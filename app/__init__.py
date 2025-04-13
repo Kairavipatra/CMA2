@@ -19,7 +19,6 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
     from app.routes import auth, products, appointments, dog_walking, toys
-    from .routes import app as app_routes
     from app.app_routes import app_bp 
  
     app.register_blueprint(auth.auth_bp)
