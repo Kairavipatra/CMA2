@@ -2,12 +2,10 @@ from flask import Blueprint, render_template
 
 app_bp = Blueprint('app', __name__)
 
-# Define the route for the home page
 @app_bp.route('/')
 def home():
     return render_template('index.html')
 
-# Define routes for the other pages
 @app_bp.route('/blog')
 def blog():
     return render_template('blog.html')
@@ -47,4 +45,3 @@ def toys():
 @app_bp.route('/vet')
 def vet():
     return render_template('vet.html')
-
