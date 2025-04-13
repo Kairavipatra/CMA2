@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 
 app_bp = Blueprint('app', __name__)
 
-@app_bp.route('/')
+@app_bp.route('/index.html')
 def home():
     return render_template('index.html')
 
