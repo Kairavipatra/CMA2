@@ -6,7 +6,7 @@ app_bp = Blueprint('app', __name__)
 def home():
     return render_template('index.html')
 
-@app_bp.route('/blog')
+@app_bp.route('/')
 def blog():
     return render_template('blog.html')
 
