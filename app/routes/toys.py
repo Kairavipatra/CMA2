@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify
 
-bp = Blueprint('toys', __name__, url_prefix='/toys')
+toys_bp = Blueprint('toys', __name__, url_prefix='/toys')
 
-@bp.route('/')
+@toys_bp.route('/')
 def toy_list():
     return jsonify([
         {"name": "Plush Chew Toy", "price": 300},
