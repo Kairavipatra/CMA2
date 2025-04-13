@@ -1,10 +1,10 @@
 from flask import Blueprint, request, redirect, url_for, render_template_string
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 users = {}
 
-@bp.route('/signup', methods=['GET', 'POST'])
+@auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
         username = request.form['username']
@@ -18,7 +18,8 @@ def signup():
             <button type="submit">Sign Up</button>
         </form>
     '''
-@bp.route('/login', methods=['GET', 'POST'])
+
+@auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
