@@ -20,7 +20,6 @@ def create_app():
     app = Flask(__name__)
     from app.routes import auth, products, appointments, dog_walking, toys
     from .routes import app as app_routes
-    from . import app
  
     app.register_blueprint(auth.auth_bp)
     app.register_blueprint(products.products_bp)
