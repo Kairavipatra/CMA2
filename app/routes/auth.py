@@ -80,9 +80,8 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful!', 'success')
-
             next_page = request.args.get('next')
-            return redirect(next_page or url_for('app.home'))  # FIXED: Make sure this route exists!
+            return redirect(next_page or url_for('app.home'))  # Change 'main.home' to your home route's endpoint
 
         flash('Invalid credentials.', 'error')
         return redirect(url_for('auth.login'))
