@@ -36,7 +36,8 @@
     #        <button type="submit">Login</button>
    #     </form>
   #  '''
-from flask import Blueprint, request, redirect, url_for, render_template_string
+
+from flask import Blueprint, request, redirect, url_for, render_template_string, flash
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import User
@@ -54,13 +55,15 @@ def signup():
         # Check if username already exists
         user = User.query.filter_by(username=username).first()
         if user:
-            return "Username already exists.", 400  # Return a 400 Bad Request error if username exists
+            flash('Username already exists.', 'error')  # Flash error message
+            return redirect(url_for('auth.signup'))  # Stay on signup page if username exists
         
         # Create a new user with hashed password
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        
+
+        flash('Sign-up successful! Please log in.', 'success')  # Flash success message
         return redirect(url_for('auth.login'))  # Redirect to login page after successful signup
 
     return '''
@@ -81,9 +84,13 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             login_user(user)  # Log the user in
-            return redirect(url_for('admin.index'))  # Redirect to Admin Panel
 
-        return "Invalid credentials.", 401  # Unauthorized if login fails
+            # Redirect to the page user wanted to visit (next parameter), or fallback to home page
+            next_page = request.args.get('next')
+            return redirect(next_page or url_for('app.home'))  # Adjust to your home route
+
+        flash('Invalid credentials.', 'error')  # Flash error message
+        return redirect(url_for('auth.login'))  # Stay on login page if credentials are incorrect
 
     return '''
         <form method="post">
@@ -98,4 +105,5 @@ def login():
 @login_required
 def logout():
     logout_user()  # Log the user out
+    flash('You have been logged out.', 'info')  # Flash logout message
     return redirect(url_for('auth.login'))  # Redirect to login page after logout
