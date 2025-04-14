@@ -159,17 +159,40 @@
   </section>
 
   <main class="food-section">
-    <!-- Loop through the food products passed from Flask -->
-    {% for product in products %}
-      <div class="food-card" data-aos="fade-up">
-        <img src="{{ product.image_url }}" alt="{{ product.name }}">
-        <h3>{{ product.name }}</h3>
-        <p>{{ product.description }}</p>
-        <button>Add to Cart - Rs. {{ product.price }}</button>
-      </div>
-    {% else %}
-      <p>No food products available.</p>
-    {% endfor %}
+    <div class="food-card" data-aos="fade-up">
+      <img src="https://thumbs.dreamstime.com/b/dry-kibble-dog-food-metal-bowl-wooden-table-91819272.jpg" alt="Dry Dog Food">
+      <h3>Premium Dry Kibble</h3>
+      <p>High-protein, grain-free kibble made with real chicken and sweet potato. Great for all dog breeds.</p>
+      <button>Add to Cart - Rs. 500</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://hip2save.com/wp-content/uploads/2020/07/cat-eating-wet-cat-food.jpg?resize=1024%2C538&strip=all?w=700&strip=all" alt="Wet Cat Food">
+      <h3>Gourmet Wet Cat Meals</h3>
+      <p>Delicious tuna and salmon medley in gravy. Rich in omega-3 for shiny fur and healthy skin.</p>
+      <button>Add to Cart - Rs. 100</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://th.bing.com/th/id/OIP.TOTc_DOLDzEJYo5XLBkuoQHaHa?rs=1&pid=ImgDetMain" alt="Homemade Dog Meal">
+      <h3>Homestyle Dog Meals</h3>
+      <p>Human-grade ingredients slow cooked with veggies, rice, and lean meat. A wholesome dinner treat!</p>
+      <button>Add to Cart - Rs. 1000</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://http2.mlstatic.com/D_NQ_NP_871354-MLA43714550129_102020-F.jpg" alt="Puppy Food">
+      <h3>Starter Puppy Mix</h3>
+      <p>Nutritious formula specially developed for growing puppies of all breeds.</p>
+      <button>Add to Cart - Rs. 499</button>
+    </div>
+
+    <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+      <img src="https://th.bing.com/th/id/OIP.IA7FxXY8mjlG-KKlfomMYQHaLZ?rs=1&pid=ImgDetMain" alt="Cat Treats">
+      <h3>Tuna Crunchies</h3>
+      <p>Crunchy and delicious tuna-flavored treats, enriched with vitamins and minerals.</p>
+      <button>Add to Cart - Rs. 199</button>
+    </div>
   </main>
 
   <footer>
