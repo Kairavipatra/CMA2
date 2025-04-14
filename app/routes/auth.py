@@ -58,7 +58,7 @@ def signup():
             flash('Username already exists.', 'error')
             return redirect(url_for('auth.signup'))
 
-        # Create new user
+        # Create new user with hashed password
         hashed_password = generate_password_hash(password)
         new_user = User(username=username, password=hashed_password)
         db.session.add(new_user)
@@ -82,7 +82,7 @@ def login():
             flash('Login successful!', 'success')
 
             next_page = request.args.get('next')
-            return redirect(next_page or url_for('home'))  # Make sure 'home' route exists!
+            return redirect(next_page or url_for('app.home'))  # FIXED: Make sure this route exists!
 
         flash('Invalid credentials.', 'error')
         return redirect(url_for('auth.login'))
