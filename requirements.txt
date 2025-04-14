@@ -2,3 +2,4 @@
 flask
 gunicorn
 Flask-SQLAlchemy
+flask-admin==1.5.8
