@@ -10,7 +10,8 @@ def signup():
         username = request.form['username']
         password = request.form['password']
         users[username] = password
-        return "Signup successful!"
+        # Redirect to home after successful signup
+        return redirect(url_for('app.home'))
     return '''
         <form method="post">
             Username: <input type="text" name="username" required>
@@ -25,7 +26,8 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if users.get(username) == password:
-            return "Login successful!"
+            # Redirect to home after successful login
+            return redirect(url_for('app.home'))
         return "Invalid credentials."
     return '''
         <form method="post">
