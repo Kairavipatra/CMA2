@@ -67,7 +67,7 @@ def signup():
         flash('Sign-up successful! Please log in.', 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template('signup.html')
+    return render_template('index.html')
 
 
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -87,7 +87,7 @@ def login():
         flash('Invalid credentials.', 'error')
         return redirect(url_for('auth.login'))
 
-    return render_template('login.html')
+    return render_template('index.html')
 
 
 @auth_bp.route('/logout')
