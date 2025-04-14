@@ -15,7 +15,14 @@ class User(db.Model, UserMixin):
         """Checks if the provided password matches the hashed password."""
         return check_password_hash(self.password, password)
 
+    # Optional: This method is automatically provided by UserMixin
+    # def get_id(self):
+    #     return str(self.id)
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     price = db.Column(db.Float, nullable=False)
+  
+  
+
