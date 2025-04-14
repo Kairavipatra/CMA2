@@ -91,23 +91,105 @@
     }
   </style>
 
-  <!-- Features Section -->
-  <section class="features">
-    <!-- Your feature cards remain unchanged -->
-    ...
+ <section class="features">
+    <div class="feature" data-aos="fade-up">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Toys">
+      <h3>Toys & Treats</h3>
+      <p>High-quality toys and delicious treats to keep your pet active and happy.</p>
+      <a href="toys.html" class="card-btn orange-btn">Explore</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="100">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Grooming">
+      <h3>Grooming Services</h3>
+      <p>Pamper your pet with our top-notch grooming sessions.</p>
+      <a href="grooming.html" class="card-btn pink-btn">Book Now</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="200">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Healthy Food">
+      <h3>Healthy Food</h3>
+      <p>Nutritious food options tailored for your pet’s needs.</p>
+      <a href="food.html" class="card-btn green-btn">Check Menu</a>
+    </div>
+  
+    <div class="feature" data-aos="fade-up" data-aos-delay="300">
+      <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Vet">
+      <h3>Vet Appointments</h3>
+      <p>Book quick and easy appointments with trusted veterinarians.</p>
+      <a href="vet.html" class="card-btn blue-btn">Book Visit</a>
+    </div>
   </section>
-
-  <!-- Popular Services Table -->
+  
+  <!-- Add this CSS to your <style> or CSS file -->
+  <style>
+    .card-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 20px;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+  
+    .card-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+      opacity: 0.95;
+    }
+  
+    .orange-btn {
+      background: linear-gradient(45deg, #ffa94d, #ff922b);
+    }
+  
+    .pink-btn {
+      background: linear-gradient(45deg, #ff6b6b, #f06595);
+    }
+  
+    .green-btn {
+      background: linear-gradient(45deg, #69db7c, #38d9a9);
+    }
+  
+    .blue-btn {
+      background: linear-gradient(45deg, #4dabf7, #339af0);
+    }
+  </style>
+  
   <section class="services-table" data-aos="fade-up">
-    <!-- Your services content remains unchanged -->
-    ...
+    <h2>Popular Services</h2>
+    <div class="service-row">
+      <span>Vet Appointment</span>
+      <span>₹500</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+    <div class="service-row">
+      <span>Pet Grooming</span>
+      <span>₹600</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+    <div class="service-row">
+      <span>Dog Walking</span>
+      <span>₹200</span>
+      <button>Book Now</button>
+    </div>
+    <hr />
+  </section>
+  
+
+  <section class="video-section" data-aos="zoom-in">
+    <h2>See PawPal in Action</h2>
+    <video controls autoplay muted loop>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
   </section>
 
-  <!-- Video Section -->
-  <section class="video-section" data-aos="zoom-in">
-    <!-- Your video content remains unchanged -->
-    ...
-  </section>
 
   <!-- Login and Signup -->
   <section class="login-signup" style="padding: 2em; background: #fffaf3; text-align: center;">
