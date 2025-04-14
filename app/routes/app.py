@@ -20,7 +20,8 @@ def dog_walking():
 
 @app_bp.route('/food.html')  # Changed to lowercase and hyphen
 def food():
-    return render_template('food.html')
+    food_items = Product.query.filter_by(category='Food').all()
+    return render_template('food.html', products=food_items)
 
 @app_bp.route('/grooming.html')  # Changed to lowercase
 def grooming():
@@ -36,7 +37,8 @@ def shop():
 
 @app_bp.route('/toys.html')  # Changed to lowercase and hyphen
 def toys():
-    return render_template('toys.html')
+    toys = Product.query.filter_by(category='Toys').all()
+    return render_template('toys.html', products=toys)
 
 @app_bp.route('/vet.html')  # Changed to lowercase and fixed typo
 def vet():
