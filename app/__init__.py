@@ -34,9 +34,9 @@ def create_app():
 
     # Database configuration: Render Postgres URL from env or local SQLite fallback
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-        'postgresql://pawpal_db_user:JAqJZtiGrHUE3GsjzybXVihvxl3VVpYM@dpg-cvv8c4fgi27c73cojqdg-a/pawpal_db',  # expected to be set in Render
-        'sqlite:///pawpal.db'  # fallback if environment variable isn't set
-    )
+        'postgresql://pawpal_db_user:JAqJZtiGrHUE3GsjzybXVihvxl3VVpYM@dpg-cvv8c4fgi27c73cojqdg-a/pawpal_db') # expected to be set in Render
+      #  'sqlite:///pawpal.db'  # fallback if environment variable isn't set
+    
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize extensions
