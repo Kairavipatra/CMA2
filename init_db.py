@@ -1,17 +1,17 @@
 from app import create_app, db
-from models import Product
+from app.models import Product
 
 app = create_app()
 app.app_context().push()
 
-# Create all the tables defined in the models
+# Create tables in the connected database
 db.create_all()
 
-# Data for food products
+# Sample food products
 food_data = [
     {
         'name': 'Premium Dry Kibble',
-        'description': 'High-protein, grain-free kibble made with real chicken and sweet potato. Great for all dog breeds.',
+        'description': 'High-protein, grain-free kibble made with real chicken and sweet potato.',
         'price': 500,
         'image_url': 'https://thumbs.dreamstime.com/b/dry-kibble-dog-food-metal-bowl-wooden-table-91819272.jpg',
         'category': 'food'
@@ -46,7 +46,7 @@ food_data = [
     }
 ]
 
-# Data for toy products
+# Sample toy products
 toy_data = [
     {
         'name': 'Squeaky Bone Toy',
@@ -78,28 +78,22 @@ toy_data = [
     }
 ]
 
-# Check if food products already exist to avoid duplicates
-existing_foods = Product.query.filter_by(category='food').all()
-
-if not existing_foods:
+# Insert food products if not already present
+if not Product.query.filter_by(category='food').first():
     for data in food_data:
-        product = Product(**data)
-        db.session.add(product)
+        db.session.add(Product(**data))
     db.session.commit()
-    print("Food products added to the database!")
+    print("Food products added to the database.")
 else:
     print("Food products already exist in the database.")
 
-# Check if toy products already exist to avoid duplicates
-existing_toys = Product.query.filter_by(category='toys').all()
-
-if not existing_toys:
+# Insert toy products if not already present
+if not Product.query.filter_by(category='toys').first():
     for data in toy_data:
-        product = Product(**data)
-        db.session.add(product)
+        db.session.add(Product(**data))
     db.session.commit()
-    print("Toy products added to the database!")
+    print("Toy products added to the database.")
 else:
     print("Toy products already exist in the database.")
 
-print("Database tables created successfully!")
+print("Database tables created and populated successfully!")
