@@ -19,35 +19,40 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_login import LoginManager
+import os  # <-- Add this for environment variable support
 
 # Initialize globally
 db = SQLAlchemy()
 admin = Admin(name='PawPal Admin', template_mode='bootstrap3')
-login_manager = LoginManager()  # <-- add this!
+login_manager = LoginManager()
 
 def create_app():
     app = Flask(__name__)
 
     # Secret key for session management
-    app.config['SECRET_KEY'] = 'your_secret_key_here'
+    app.config['SECRET_KEY'] = 'your_secret_key_here'  # You can set this in environment too!
 
-    # Database configuration
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///pawpal.db'
+    # Database configuration:
+    # Use environment variable first for production, fallback to SQLite for local testing
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
+        'postgresql://pawpal_db_user:JAqJZtiGrHUE3GsjzybXVihvxl3VVpYM@dpg-cvv8c4fgi27c73cojqdg-a:5432/pawpal_db',
+        'sqlite:///pawpal.db'  # fallback to SQLite if env var is not set
+    )
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    # Initialize database and admin with app
+    # Initialize extensions
     db.init_app(app)
     admin.init_app(app)
-    login_manager.init_app(app)  # <-- initialize login manager!
+    login_manager.init_app(app)
 
-    # User loader function for Flask-Login
+    # Import models
     from app.models import User, Product
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-    # Import and register blueprints
+    # Register blueprints
     from app.routes import app as app_routes
     from app.routes import auth, products, appointments, dog_walking, toys
 
@@ -58,7 +63,7 @@ def create_app():
     app.register_blueprint(dog_walking.dog_walking_bp)
     app.register_blueprint(toys.toys_bp)
 
-    # Register models in Flask-Admin
+    # Register admin models
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Product, db.session))
 
