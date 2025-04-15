@@ -2,6 +2,7 @@
 flask
 gunicorn
 Flask-SQLAlchemy
+psycopg2-binary
 flask-admin==1.5.8
 jinja2==3.0.0
 SQLAlchemy==1.4.41
