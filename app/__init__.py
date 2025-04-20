@@ -4,7 +4,7 @@
  #   app = Flask(__name__)
   #  app.secret_key = 'supersecretkey'  # for session & forms
 
-   # from app.routes import auth, products, appointments, dog_walking, toys
+   # from app.routes import auth, products, appointments, dog_walking, toys, foster_care
 
     #app.register_blueprint(auth.bp)
     #app.register_blueprint(products.bp)
@@ -53,7 +53,7 @@ def create_app():
 
     # Register blueprints
     from app.routes import app as app_routes
-    from app.routes import auth, products, appointments, dog_walking, toys
+    from app.routes import auth, products, appointments, dog_walking, toys, foster_care
 
     app.register_blueprint(app_routes.app_bp)
     app.register_blueprint(auth.auth_bp)
@@ -61,6 +61,7 @@ def create_app():
     app.register_blueprint(appointments.appointments_bp)
     app.register_blueprint(dog_walking.dog_walking_bp)
     app.register_blueprint(toys.toys_bp)
+    app.register_blueprint(foster_care.foster_care_bp)
 
     # Register models for Flask-Admin
     admin.add_view(ModelView(User, db.session))
