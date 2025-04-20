@@ -78,6 +78,29 @@ toy_data = [
     }
 ]
 
+clinic1 = VeterinaryClinic(
+        name="Airoli Pet Clinic",
+        location="Airoli, Navi Mumbai",
+        specialties="General Check-ups, Vaccinations, Surgery",
+        map_link="https://goo.gl/maps/xyz123"
+        )
+
+        clinic2 = VeterinaryClinic(
+        name="Animal Care Clinic",
+        location="Airoli, Navi Mumbai",
+        specialties="Emergency Care, Pet Dentistry",
+        map_link="https://goo.gl/maps/abc456"
+        )
+
+        clinic3 = VeterinaryClinic(
+        name="Healthy Paws Veterinary",
+        location="Airoli, Navi Mumbai",
+        specialties="Pet Vaccinations, Grooming Services",
+        map_link="https://goo.gl/maps/def789"
+        )
+
+        db.session.add_all([clinic1, clinic2, clinic3])
+        db.session.commit()
 # Insert food products if not already present
 if not Product.query.filter_by(category='food').first():
     for data in food_data:
