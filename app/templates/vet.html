@@ -1,165 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vet Appointments - PawPal</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <style>
-    .vet-section {
-      padding: 3em 1em;
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff9a8b;
+      background-image: linear-gradient(45deg, #ff9a8b 0%, #ff6a88 55%, #ff99ac 100%);
+      padding: 1.2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      color: white;
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1601758123927-1961fe70f92f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center / cover;
+      height: 45vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
+      color: white;
+      padding: 2rem;
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
     }
 
     .vet-card {
-      background-color: #fef8f4;
-      border-radius: 12px;
-      padding: 2em;
-      margin: 1.5em auto;
-      max-width: 850px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1000px;
+      margin: 3rem auto;
+      background: #fefefe;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
 
-    .vet-card img {
-      width: 100%;
+    .vet-card h3 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: #ff6a88;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .vet-clinic-list {
+      display: grid;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .vet-clinic-item {
+      background-color: #fffdf8;
+      padding: 1.5rem;
       border-radius: 10px;
-      margin-bottom: 1em;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      text-align: left;
+      transition: transform 0.2s ease;
     }
 
-    .form-section {
-      background-color: #fffaf0;
-      padding: 2em;
-      border-radius: 12px;
-      margin-top: 2em;
+    .vet-clinic-item:hover {
+      transform: translateY(-4px);
     }
 
-    .form-section input,
-    .form-section select,
-    .form-section textarea {
-      padding: 0.8em;
+    .vet-clinic-item img {
       width: 100%;
-      margin: 0.6em 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
 
-    iframe {
-      max-width: 100%;
-      border-radius: 10px;
-      height: 360px;
+    .vet-clinic-item h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+      color: #d2691e;
     }
-    .hero {
-  background: url('https://pattersonvetcontentmedia.azureedge.net/VetContent/getattachment/6c6f2e0a-dd62-4c46-b9a4-2aa9eb3e7f68/Jarvinen_AlexandriaVA_066.jpg/?rev=-1763780186') no-repeat center center/cover;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  color: #fff;
-  text-align: center;
-}
 
+    .vet-clinic-item p {
+      margin: 0.3rem 0;
+      color: #444;
+    }
 
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
-    z-index: 0;
-    border-bottom: 5px solid #ffa94d;
-  }
+    .vet-clinic-item a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      color: #1e90ff;
+      text-decoration: underline;
+    }
 
-.hero-overlay {
-  position: relative;
-  z-index: 1;
-  padding: 2rem;
-  }
-
-.hero h2 {
-  font-size: 3rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-  }
-
-.hero p {
-  font-size: 1.25rem;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
-  }
-
-  .cta-button {
-  margin-top: 1rem;
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: #ffa94d;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-.cta-button:hover {
-  background-color: #ff922b;
-}
-
-</style>
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #ff9a8b;
+      color: white;
+      margin-top: 3rem;
+    }
+  </style>
 </head>
+
 <body>
+
   <header>
     <h1>PawPal</h1>
     <nav>
-      <a href="/">Home</a>
+      <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="services.html">Services</a>
-      <a href="blog.html">Blog</a>
+      <a href="vet.html">Vet Appointments</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <div class="hero-overlay">
-      <h2>Book a Vet Appointment</h2>
-      <p>Your pet's health is our top priority. Schedule a visit today!</p>
-      <a href="contact.html" class="cta-button">Make an Appointment</a>
-    </div>
-  </section>  
+    <h2>Find Trusted Vets for Your Pets</h2>
+  </section>
 
-  <main class="vet-section">
-    <div class="vet-card" data-aos="fade-up">
-      <img src="https://th.bing.com/th/id/OIP.CgeS5dUdbOQMWS5ARYzxhAHaC9?rs=1&pid=ImgDetMain" alt="Vet Clinic">
-      <h3>Trusted Veterinary Care</h3>
-      <p>Our certified vets provide regular checkups, vaccinations, diagnostics, and emergency care. Available 7 days a week.</p>
-    </div>
-
-    <div class="vet-card form-section" data-aos="fade-up" data-aos-delay="200">
-      <h3>Book an Appointment</h3>
-      <form>
-        <input type="text" placeholder="Your Name" required />
-        <input type="email" placeholder="Email Address" required />
-        <input type="text" placeholder="Pet's Name" required />
-        <select required>
-          <option value="">Select Pet Type</option>
-          <option>Dog</option>
-          <option>Cat</option>
-          <option>Other</option>
-        </select>
-        <input type="date" required />
-        <textarea placeholder="Reason for Visit" rows="4" required></textarea>
-        <button type="submit">Book Now</button>
-      </form>
-    </div>
-
-  </main>
+  <section class="vet-card">
+    <h3>Veterinary Clinics Near Airoli</h3>
+    <ul class="vet-clinic-list">
+      <li class="vet-clinic-item">
+        <img src="https://petofy.blob.core.windows.net/petofycontainer/2023-05-09/20230509T073043401.jpg" alt="Airoli Pet Clinic">
+        <h4>Dr. Karthik's Pet Animal Clinic</h4>
+        <p><strong>Location:</strong> Airoli, Navi Mumbai</p>
+        <p><strong>Specialties:</strong> General Check-ups, Vaccinations, Surgery</p>
+        <a href="https://maps.app.goo.gl/9EbnWtg6PJLoBv1v8?g_st=com.google.maps.preview.copy" target="_blank">View on Map</a>
+      </li>
+      <li class="vet-clinic-item">
+        <img src="https://th.bing.com/th/id/OIP.3eiSmY8TRoK95f2LPtByOAHaE8?rs=1&pid=ImgDetMain" alt="Animal Care Clinic">
+        <h4>SAI PET CARE</h4>
+        <p><strong>Location:</strong> Airoli, Navi Mumbai</p>
+        <p><strong>Specialties:</strong> Emergency Care, Pet Dentistry, General Check-ups, Vaccinations, Surgery</p>
+        <a href="https://maps.app.goo.gl/v9cK6NvLFyvQt9Aa8?g_st=com.google.maps.preview.copy" target="_blank">View on Map</a>
+      </li>
+      <li class="vet-clinic-item">
+        <img src="https://th.bing.com/th/id/OIP.6hIB1PVN9OFwSt4ISPSVAQHaEK?rs=1&pid=ImgDetMain" alt="Healthy Paws Veterinary">
+        <h4>Dr Bapat's Petshop and Hospital</h4>
+        <p><strong>Location:</strong> Thane, Navi Mumbai</p>
+        <p><strong>Specialties:</strong> Pet Vaccinations, Grooming Services. Hospitalisation</p>
+        <a href="https://maps.app.goo.gl/G8dk3pPJEhpy97pW7?g_st=com.google.maps.preview.copy" target="_blank">View on Map</a>
+      </li>
+    </ul>
+  </section>
 
   <footer>
     <p>&copy; 2025 PawPal. All rights reserved.</p>
   </footer>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
   <script>
     AOS.init();
   </script>
 </body>
+
 </html>
