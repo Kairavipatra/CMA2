@@ -41,3 +41,7 @@ def toys():
 @app_bp.route('/vet.html')  # Changed to lowercase and fixed typo
 def vet():
     return render_template('vet.html')
+
+@app_bp.route('/foster-care.html')
+def foster_care():
+    return render_template('foster-care.html')
